@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
+Generated Docker images available under: https://hub.docker.com/r/pl4za
+
+angular-cli-dev-server: https://hub.docker.com/r/pl4za/angular-cli-dev-server/
+
+angular-cli-dev-tests: https://hub.docker.com/r/pl4za/angular-cli-dev-tests/
+
 ## Docker usefull commands
 
 ### Delete all containers
