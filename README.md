@@ -2,6 +2,38 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
+## Docker usefull commands
+
+### Delete all containers
+
+docker rm $(docker ps -a -q)
+
+### Delete all images (force delete)
+
+docker rmi $(docker images -q) -f
+
+### Stop all containers
+
+docker container stop $(docker ps -a -q)
+
+### Build image, start container, build compose and start all
+
+docker build -f docker/server/dockerfile -t angular-cli-dev-server .
+docker build -f docker/tests/dockerfile -t angular-cli-dev-tests .
+docker-compose build
+docker-compose up
+
+### Push image to docker hub
+
+export DOCKER_ID_USER=pl4za
+docker login
+
+docker tag angular-cli-dev-server $DOCKER_ID_USER/angular-cli-dev-server
+docker push $DOCKER_ID_USER/angular-cli-dev-server
+
+docker tag angular-cli-dev-tests $DOCKER_ID_USER/angular-cli-dev-tests
+docker push $DOCKER_ID_USER/angular-cli-dev-tests
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -1,0 +1,19 @@
+# Get Node image
+FROM node:latest
+
+# Add project to container
+ADD . /app
+
+# Set the working directory of the container
+WORKDIR /app
+
+# Make Angular CLI available in our DEV env
+RUN npm i -g @angular/cli
+# Set the Chrome repo.
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+# Install Chrome.
+RUN apt-get update && apt-get -y install google-chrome-stable
+
+# Main command
+ENTRYPOINT ["ng", "test"]

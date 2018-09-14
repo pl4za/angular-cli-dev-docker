@@ -1,17 +1,33 @@
 version: '3'
 services:
-  angular:
-    container_name: angular_app
-    image: my-dream-app
+
+  angular-server:
+    container_name: angular-cli-dev-server
+    image: angular-cli-dev-server
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: ./docker/server/dockerfile
     volumes:
       - .:/app
     environment:
       - NODE_ENV=development
     ports:
       - "3000:4200"
+    networks:
+      - node-network
+
+  angular-test:
+    container_name: angular-cli-dev-tests
+    image: angular-cli-dev-tests
+    build:
+      context: .
+      dockerfile: ./docker/tests/dockerfile
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3030:9876"
     networks:
       - node-network
 
