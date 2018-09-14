@@ -19,8 +19,11 @@ docker container stop $(docker ps -a -q)
 ### Build image, start container, build compose and start all
 
 docker build -f docker/server/dockerfile -t angular-cli-dev-server .
+
 docker build -f docker/tests/dockerfile -t angular-cli-dev-tests .
+
 docker-compose build
+
 docker-compose up
 
 ### Push image to docker hub
